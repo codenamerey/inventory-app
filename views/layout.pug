@@ -3,8 +3,13 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
-  body.bg-slate-900.text-white
-    header.text-center.bg-slate-700.text-gray-50.shadow-black.py-4
-      p The new and improved
-      h1.text-yellow-500.font-bold.text-2xl FakeStore
-      block content
+  body.bg-slate-900.text-white.flex.flex-col.h-screen
+    header(class=' justify-between items-center').text-center.bg-slate-700.text-gray-50.shadow-black.py-4.flex.space-x-auto
+      div.logo.px-6
+        p The new and improved
+        h1.text-yellow-500.font-bold.text-2xl FakeStore
+
+      div(class='space-x-4 mr-4')
+        a(href="/") Home 
+        a(href='/store') Store
+    block content
