@@ -16,7 +16,6 @@ exports.item_category_get = (req, res, next) => {
         .populate('seller')
         .exec(function(err, category_items) {
             if(err) return next(err);
-
             res.render('items', {title: req.params.category, items: category_items});
         });
 };
@@ -24,4 +23,8 @@ exports.item_category_get = (req, res, next) => {
 exports.item_id_get = (req, res, next) => {
     Item.findById(req.params.id)
         .populate('seller')
+        .exec(function(err, item) {
+            if(err) return next(err);
+            res.render('item_detail', {item});
+        })
 };
