@@ -5,7 +5,7 @@ const SellerSchema = new Schema({
     first_name: {type:String, required:true},
     last_name: {type:String, required:true},
     joined_date: {type: Date, required:true},
-    items: {type:Object.Types.id, ref: 'Item', required: true}
+    items: {type:Schema.Types.ObjectId, ref: 'Item'}
 });
 
 SellerSchema.virtual('url').get(function() {
