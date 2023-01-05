@@ -2,10 +2,10 @@ extends layout
 
 block content 
 
-    main(class="grow h-3/4").flex.justify-center.p-6.items-center 
-        img(src=item.imageURL class=" h-1/2") 
+    main(class="grow flex-col sm:flex-row h-3/4 gap-x-4").flex.justify-center.p-6.items-center 
+        img(src=item.imageURL class=" h-1/2 md:h-3/4") 
         article.flex.flex-col.items-center.justify-center
-            h1= item.name 
+            h1.text-2xl= item.name 
             h3 Price: $#{item.price} | Stock Available: #{item.available} 
             p= item.desc 
 
