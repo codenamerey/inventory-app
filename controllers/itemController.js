@@ -10,3 +10,18 @@ exports.index = (req, res, next) => {
             res.render('items', {title: 'Fake Items (All)', items});
         });
 }
+
+exports.item_category_get = (req, res, next) => {
+    Item.find({category: req.params.category})
+        .populate('seller')
+        .exec(function(err, category_items) {
+            if(err) return next(err);
+
+            res.render('items', {title: req.params.category, items: category_items});
+        });
+};
+
+exports.item_id_get = (req, res, next) => {
+    Item.findById(req.params.id)
+        .populate('seller')
+};

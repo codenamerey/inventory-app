@@ -2,7 +2,7 @@ extends layout
 
 block content
 
-    h1.text-center.text-xl.p-2= title
+    h1.text-center.text-xl.p-2 #{title[0].toUpperCase() + title.slice(1).toLowerCase()}
     ul.flex.justify-center.gap-y-4.flex-wrap.gap-x-4
         each item in items
             li(class=" w-full sm:w-2/6 m-6 cursor-pointer select-none")
