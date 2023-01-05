@@ -12,4 +12,8 @@ SellerSchema.virtual('url').get(function() {
     return `/store/seller/${this._id}`;
 });
 
+SellerSchema.virtual('name').get(function() {
+    return `${this.first_name} ${this.last_name}`;
+})
+
 module.exports = mongoose.model('Seller', SellerSchema);
