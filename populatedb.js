@@ -74,15 +74,16 @@ function sellerCreate(first_name, last_name, joined_date, cb) {
     })
 }
 
-function itemCreate(name, seller, price, desc, available, cb) {
+function itemCreate(name, seller, price, desc, available, imageURL, category, cb) {
     const itemdetail = {
         name,
         seller,
         price,
         desc,
-        available
+        available,
+        imageURL,
+        category
     }
-
     const item = new Item(itemdetail);
     item.save(function(err) {
         if(err) {
@@ -102,10 +103,11 @@ function createSellers(cb) {
 
 function createItems(cb) {
     let itemFunctionsArray = [];
-    let available = Math.floor(Math.random() * 25) + 1;
+    
     fakeStoreData.map((datum) => {
+        let available = Math.floor(Math.random() * 25) + 1;
         const itemFunction = function(callback) {
-            itemCreate(datum.title, sellers[0], datum.price, datum.description, available, callback);
+            itemCreate(datum.title, sellers[0], datum.price, datum.description, available, datum.image, datum.category, callback);
         }
 
         itemFunctionsArray.push(itemFunction);
