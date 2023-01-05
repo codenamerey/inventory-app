@@ -7,7 +7,8 @@ const ItemSchema = new Schema({
     price: {type:Number, required:true},
     desc: {type:String, required:true},
     available: {type:Number, required:true},
-    category: {type:String}
+    imageURL: {type:String, required:true},
+    category: {type:String},
 })
 
 ItemSchema.virtual('url').get(function() {
