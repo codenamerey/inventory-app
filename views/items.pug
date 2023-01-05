@@ -1,0 +1,13 @@
+extends layout 
+
+block content
+
+    h1.text-center.text-xl.p-2= title
+    ul.flex.justify-center.gap-y-4.flex-wrap.gap-x-4
+        each item in items
+            li(class=" w-full sm:w-2/6 m-6 cursor-pointer select-none")
+                a.bg-slate-500.aspect-square.rounded.p-6.flex.flex-col.items-center(href=item.url class='hover:bg-emerald-800 transition duration-500') 
+                    p= item.name
+                    img(src=item.imageURL, alt=item.name, class=" object-contain w-3/4 h-3/4 bg-slate-900 p-6 shadow-inner shadow-black")
+                    p.text-sm.text-gray-300 Seller: #{item.seller.name}
+
