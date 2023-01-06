@@ -1,0 +1,17 @@
+extends layout 
+
+block content 
+
+    main 
+        h1= title 
+
+        h3 First Name: #{seller.first_name}
+        h3 Last Name: #{seller.last_name}
+        h3 Joined: #{seller.joined_date.toLocaleDateString()} 
+
+         
+        if(items)
+            ul 
+                each item in items 
+                    li
+                        a(href=item.url)= item.name

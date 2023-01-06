@@ -1,9 +1,39 @@
 const Seller = require('../models/seller');
+const Item = require('../models/item');
 const { validationResult, body } = require('express-validator');
+const async = require('async');
 
 
 exports.seller_id_get = (req, res, next) => {
-    res.send(`Page for seller ${req.params.id} is not ready yet.`);
+    async.parallel(
+        {
+            sellerItems(callback) {
+                Item.find({seller: req.params.id})
+                    .exec(function(err, seller_items) {
+                        if(err) return next(err);
+
+                        callback(null, seller_items);
+                    })
+            },
+
+            sellerDetails(callback) {
+                Seller.findById(req.params.id)
+                    .populate('items')
+                    .exec(function(err, seller) {
+                        if(err) return next(err);
+
+                        callback(null, seller)
+                })
+            }
+        },
+
+        (err, results) => {
+
+            if(err) return next(err);
+
+            res.render('seller_detail', {title: results.sellerDetails.name, seller: results.sellerDetails, items:results.sellerItems});
+        }
+    )
 }
 
 exports.seller_create_get = (req, res, next) => {
