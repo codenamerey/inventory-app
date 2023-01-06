@@ -2,16 +2,20 @@ extends layout
 
 block content 
 
-    main 
-        h1= title 
+    main.text-center
+        div.m-6 
+            h1.text-2xl= title 
 
-        h3 First Name: #{seller.first_name}
-        h3 Last Name: #{seller.last_name}
-        h3 Joined: #{seller.joined_date.toLocaleDateString()} 
+            h3 First Name: #{seller.first_name}
+            h3 Last Name: #{seller.last_name}
+            h3 Joined: #{seller.joined_date.toLocaleDateString()} 
 
          
         if(items)
-            ul 
+            h1.text-xl Items From This Seller
+            ul(class=' flex flex-wrap justify-center items-center') 
                 each item in items 
-                    li
-                        a(href=item.url)= item.name
+                    li(class=" w-80 aspect-square m-6 cursor-pointer select-none")
+                        a.bg-slate-500.aspect-square.rounded.p-6.flex.flex-col.items-center(href=item.url class='hover:bg-emerald-800 transition duration-500') 
+                            p= item.name
+                            img(src=item.imageURL, alt=item.name, class=" object-contain w-3/4 h-3/4 bg-slate-900 p-6 shadow-inner shadow-black")
