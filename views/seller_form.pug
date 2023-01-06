@@ -6,14 +6,14 @@ block content
         form(action="", method="post").flex.flex-col.items-center.gap-y-2
 
             label(for="first-name") First Name 
-            input#first-name(type="text" name="first_name" value=(first_name==="undefined" ? '' : first_name)).outline-none.text-black.text-center.px-10.py-1 
+            input#first-name(type="text" name="first_name" required="true" value=(seller===undefined ? '' : seller.first_name)).outline-none.text-black.text-center.px-10.py-1 
 
             label(for="last-name") Last Name 
-            input#last-name(type="text" name="last_name").outline-none.text-black.text-center.px-10.py-1 
+            input#last-name(type="text" name="last_name" required="true" value=(seller===undefined ? '' : seller.last_name)).outline-none.text-black.text-center.px-10.py-1 
 
             input(type="submit" value="Apply" class=" bg-green-700 p-2 font-semibold")
 
-            if(errors.length)
+            if(errors)
                 ul 
                     each error in errors 
                         li= error.msg 
