@@ -25,6 +25,6 @@ exports.item_id_get = (req, res, next) => {
         .populate('seller')
         .exec(function(err, item) {
             if(err) return next(err);
-            res.render('item_detail', {item});
+            res.render('item_detail', {title: item.name, item});
         })
 };
