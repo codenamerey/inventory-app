@@ -11,7 +11,7 @@ block content
             h3 Joined: #{seller.joined_date.toLocaleDateString()} 
 
          
-        if(items)
+        if(items.length)
             h1.text-xl Items From This Seller
             ul(class=' flex flex-wrap justify-center items-center') 
                 each item in items 
@@ -19,3 +19,5 @@ block content
                         a.bg-slate-500.aspect-square.rounded.p-6.flex.flex-col.items-center(href=item.url class='hover:bg-emerald-800 transition duration-500') 
                             p= item.name
                             img(src=item.imageURL, alt=item.name, class=" object-contain w-3/4 h-3/4 bg-slate-900 p-6 shadow-inner shadow-black")
+        else 
+            p There are no items from this seller yet.
