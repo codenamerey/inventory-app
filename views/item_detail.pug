@@ -7,5 +7,7 @@ block content
         article.flex.flex-col.items-center.justify-center
             h1.text-2xl= item.name 
             h3 Price: $#{item.price} | Stock Available: #{item.available} 
-            p= item.desc 
+            p= item.desc
+            p(class="text-sm m-6") Seller: 
+                a(href=item.seller.url class=" underline")=  item.seller.name  
 
