@@ -10,4 +10,6 @@ router.get('/category/:category', itemController.item_category_get);
 
 router.get('/item/:id', itemController.item_id_get);
 
+router.get('/seller/create', sellerController.seller_create_get);
+
 module.exports = router;
