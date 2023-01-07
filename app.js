@@ -9,9 +9,9 @@ var usersRouter = require('./routes/users');
 const storeRouter = require('./routes/store');
 
 var app = express();
-
+require('dotenv').config();
 const mongoose = require('mongoose');
-const mongoDB = 'mongodb+srv://lee:ChMedcrEQulHejEs@cluster0.zvnouoe.mongodb.net/inventory?retryWrites=true&w=majority';
+const mongoDB = process.env.MONGODB;
 mongoose.connect(mongoDB, {useNewUrlParser:true, useUnifiedTopology:true});
 
 //Get db connection
