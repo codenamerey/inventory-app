@@ -7,6 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const storeRouter = require('./routes/store');
+const userRouter = require('./routes/user');
 
 var app = express();
 const passport = require('passport');
@@ -37,7 +38,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/', userRouter);
 app.use('/store', storeRouter);
 
 
