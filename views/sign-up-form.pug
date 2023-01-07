@@ -1,0 +1,14 @@
+extends layout 
+
+block content 
+    main(class="flex flex-col justify-center items-center grow")
+        h1(class=" text-4xl font-bold p-6 underline")= title
+        form(action="", method="post").flex.flex-col.items-center.gap-y-2
+
+            label(for="username") Username
+            input#username(type="text", name="username" class=" outline-none rounded px-6 py-2 text-center text-black")
+
+            label(for="password") Password 
+            input#password(type="password", name="password" class=" outline-none rounded px-6 py-2 text-center text-black")
+
+            input(type="submit", value="Sign Up" class=" bg-emerald-900 font-bold px-6 py-3 rounded-full shadow-lg")
