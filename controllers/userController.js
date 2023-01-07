@@ -31,3 +31,7 @@ exports.sign_up_post = [
         });
     }
 ];
+
+exports.log_in_get = (req, res, next) => {
+    res.render('log-in-form', {title: 'Log In'});
+}
