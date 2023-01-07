@@ -7,7 +7,6 @@ router.get('/', function(req, res, next) {
   Item.find({}, "category")
       .exec(function(err, categories) {
         categories.forEach((category) => {
-          console.log(category.category);
           if(categories_array.includes(category.category)) return;
           categories_array.push(category.category);
         })
