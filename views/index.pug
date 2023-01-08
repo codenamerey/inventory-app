@@ -1,7 +1,10 @@
 extends layout
 
 block content
-
+  if(currentUser)
+    h1.text-center.text-2xl.p-6 Welcome, 
+      span(class=" text-yellow-500 font-bold") #{currentUser.username} 
+      
   main.flex.justify-center.items-center.grow.gap-x-6
     article(class=" rounded w-80 max-w-xs aspect-square bg-slate-700 flex relative overflow-hidden group")  
       ul.w-full.h-full.aspect-square.p-6.flex.flex-col.justify-center.items-center 
