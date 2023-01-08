@@ -33,29 +33,27 @@ app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', indexRouter);
-app.use('/', userRouter);
-app.use('/store', storeRouter);
 
 
 // User authentication
 passport.use(
   new LocalStrategy((username, password, done) => {
-    User.find({username: username}, (err, user) => {
-      if(err) return done(err, null);
-      if(!user) return done(null, false, {message:"Incorrect username"});
+    User.findOne({username: username}, (err, user) => {
+      if(err) done(err, null);
+      if(!user) {
+        return done(null, false, {message:"Incorrect username"});
+      }
       
       bcrypt.compare(password, user.password, (err, res) => {
+        console.log(user.password);
         if(res) {
           // Passwords match, let user in
-          res.redirect('/');
+          return done(null, user);
+        } else {
+          return done(null, false, {message: "Incorrect password"});
         }
-
-        return done(null, false, {message: "Incorrect password"});
       })
     })
   })
@@ -71,15 +69,22 @@ passport.deserializeUser((id, done) => {
   })
 });
 
+
+
+app.use(session({secret: "cats", resave: false, saveUninitialized: true}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(express.urlencoded({ extended: false }));
+// catch 404 and forward to error handler
+
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;
   next();
 });
 
-app.use(session({secret: "cats", resave: false, saveUninitialized: true}));
-app.use(passport.initialize());
-app.use(passport.session());
-// catch 404 and forward to error handler
+app.use('/', indexRouter);
+app.use('/', userRouter);
+app.use('/store', storeRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });

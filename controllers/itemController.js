@@ -6,8 +6,7 @@ exports.index = (req, res, next) => {
         .populate('seller')
         .exec(function(err, items) {
             if(err) return next(err);
-
-            res.render('items', {title: 'Fake Items (All)', items});
+            res.render('items', {title: 'Fake Items (All)', items, user:req.user});
         });
 }
 

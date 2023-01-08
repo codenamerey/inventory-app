@@ -10,4 +10,6 @@ block content
                     p= item.name
                     img(src=item.imageURL, alt=item.name, class=" object-contain w-3/4 h-3/4 bg-slate-900 p-6 shadow-inner shadow-black")
                     p.text-sm.text-gray-300 Seller: #{item.seller.name}
+                    if(user)
+                        p #{user.username}
 
