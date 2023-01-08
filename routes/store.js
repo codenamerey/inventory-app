@@ -16,4 +16,6 @@ router.post('/seller/create', sellerController.seller_create_post);
 
 router.get('/seller/:id', sellerController.seller_id_get);
 
+router.get('/product/create', itemController.product_create_get);
+
 module.exports = router;

@@ -1,0 +1,16 @@
+extends layout 
+
+block content 
+
+    main(class="flex flex-col justify-center items-center grow")
+        h1(class=" text-4xl font-bold p-6 underline")= title
+        form(action="", method="post" enctype="multipart/form-data").flex.flex-col.items-center.gap-y-2
+
+            label(for="product-pic") Upload Product Picture
+            input#product-pic(type="file", name="product-pic" class=" outline-none rounded px-6 py-2 text-center text-black")
+
+            label(for="item-name") Item Name 
+            input#item-name(type="text", name="item-name" class=" outline-none rounded px-6 py-2 text-center text-black")
+
+            input(type="submit", value="Add New Product" class=" bg-emerald-900 font-bold px-6 py-3 rounded-full shadow-lg")
+

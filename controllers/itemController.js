@@ -27,3 +27,7 @@ exports.item_id_get = (req, res, next) => {
             res.render('item_detail', {title: item.name, item});
         })
 };
+
+exports.product_create_get = (req, res, next) => {
+    res.render('item-form');
+}
