@@ -18,5 +18,6 @@ block content
     a(href="/store" before="All Items" class=" cursor-pointer rounded w-80 max-w-xs aspect-square bg-slate-700 flex relative group overflow-hidden before:content-[attr(before)] before:absolute before:text-black before:inset-0 before:flex before:justify-center before:items-center before:text-2xl before:z-10 before:font-bold") 
         img(class=" blur-sm w-full h-full object-cover z-0 group-hover:scale-110 transition duration-300" src="https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg")
 
-    aside 
-      a(href="/store/seller/create" class=" fixed bottom-0 right-0 bg-orange-700 text-yellow-200 p-2 font-semibold") Become A Seller
+    if(currentUser && currentUser.isSeller == false)
+      aside
+          a(href="/store/seller/create" class=" fixed bottom-0 right-0 bg-orange-700 text-yellow-200 p-2 font-semibold") Become A Seller
