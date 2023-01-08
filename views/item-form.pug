@@ -7,10 +7,24 @@ block content
         form(action="", method="post" enctype="multipart/form-data").flex.flex-col.items-center.gap-y-2
 
             label(for="product-pic") Upload Product Picture
-            input#product-pic(type="file", name="product-pic" class=" outline-none rounded px-6 py-2 text-center text-black")
+            input#product-pic(type="file", name="product-pic" class=" outline-none rounded px-6 py-2 text-center text-white" required)
 
             label(for="item-name") Item Name 
-            input#item-name(type="text", name="item-name" class=" outline-none rounded px-6 py-2 text-center text-black")
+            input#item-name(type="text", name="item_name" class=" outline-none rounded px-6 py-2 text-center text-black" required)
+
+            label(for="item-price") Price 
+            input#item-price(type="number", name="item_price" class=" outline-none rounded px-6 py-2 text-center text-black" required)
+
+            label(for="item-desc") Item Description 
+            textarea#item-desc(type="text", name="item_desc" class=" outline-none rounded px-6 py-2 text-center text-black" required)
+
+            label(for="item-stock") Stock (How many are still available) 
+            input#item-stock(type="number", name="item_stock" class=" outline-none rounded px-6 py-2 text-center text-black" required)
+
+            label(for="categories") Item Category 
+            select#categories.text-black(name="category")
+                each category in categories 
+                    option(value="category")= category   
 
             input(type="submit", value="Add New Product" class=" bg-emerald-900 font-bold px-6 py-3 rounded-full shadow-lg")
 
