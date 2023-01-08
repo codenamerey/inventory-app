@@ -4,11 +4,37 @@ const User = require('../models/user');
 
 const { validationResult, body } = require('express-validator');
 const async = require('async');
+const user = require('../models/user');
 
 
 exports.seller_id_get = (req, res, next) => {
+    // If seller is user, then add option to upload item
+
     async.parallel(
         {
+            user(callback) {
+                if(!req.user) return callback(null, null);
+                Seller.findById(req.params.id)
+                      .populate('user')
+                      .exec(function(err, seller) {
+                        if(!seller.user) return callback(null, null);
+                        if(req.user.id == seller.user.id) return callback(null, seller);
+                        callback(null, null);
+                      })
+                    //     (err, seller) => {
+
+                    //         console.log('User', req.user)
+                    //         console.log('Seller', seller)
+                    //         if(req.user == seller.user) {
+                    //             console.log('User', req.user)
+                    //             console.log('Seller', seller)
+                    //             return callback(null, seller);
+                    //         }
+                    //     })
+                    //     callback(null, null);
+                    //   })
+            },
+            
             sellerItems(callback) {
                 Item.find({seller: req.params.id})
                     .exec(function(err, seller_items) {
@@ -32,8 +58,7 @@ exports.seller_id_get = (req, res, next) => {
         (err, results) => {
 
             if(err) return next(err);
-
-            res.render('seller_detail', {title: results.sellerDetails.name, seller: results.sellerDetails, items:results.sellerItems});
+            res.render('seller_detail', {title: results.sellerDetails.name, seller: results.sellerDetails, items:results.sellerItems, user: results.user});
         }
     )
 }
