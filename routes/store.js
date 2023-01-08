@@ -18,4 +18,6 @@ router.get('/seller/:id', sellerController.seller_id_get);
 
 router.get('/product/create', itemController.product_create_get);
 
+router.post('/product/create', itemController.product_create_post);
+
 module.exports = router;
