@@ -13,6 +13,8 @@ html
       div(class='space-x-4 mr-4')
         a(href="/") Home 
         a(href='/store') Store
+        if(currentUser)
+          a(href="/log-out" class=" bg-gray-600 rounded-full px-6 py-3 shadow-md font-bold") Log Out 
         if(locals.currentUser===undefined)
           a(href="/sign-up" class=" bg-emerald-700 rounded-full px-6 py-3 shadow-md font-bold") Sign Up 
           a(href="/log-in" class=" bg-red-700 rounded-full px-6 py-3 shadow-md font-bold") Log In 
