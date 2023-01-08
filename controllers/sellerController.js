@@ -53,7 +53,8 @@ exports.seller_create_post = [
         const seller = new Seller({
             first_name: req.body.first_name,
             last_name: req.body.last_name,
-            joined_date: new Date()
+            joined_date: new Date(),
+            user: currentUser
         });
 
         if(!errors.isEmpty()) {
