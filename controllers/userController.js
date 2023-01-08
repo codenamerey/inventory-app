@@ -38,6 +38,6 @@ exports.log_in_get = (req, res, next) => {
 
 exports.log_in_post =
     passport.authenticate("local", {
-        successRedirect: '/store',
+        successRedirect: '/',
         failureRedirect: '/'
     });
