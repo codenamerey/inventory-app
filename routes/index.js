@@ -4,7 +4,6 @@ const Item = require('../models/item');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   let categories_array = [];
-  console.log(res.message);
   Item.find({}, "category")
       .exec(function(err, categories) {
         categories.forEach((category) => {

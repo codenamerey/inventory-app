@@ -2,20 +2,25 @@ extends layout
 
 block content 
     main.flex.flex-col.justify-center.items-center.grow
-        h1(class=" underline").text-center.text-2xl= title
-        form(action="", method="post").flex.flex-col.items-center.gap-y-2
+        if(currentUser)
+            h1(class=" underline").text-center.text-2xl= title
+            form(action="", method="post").flex.flex-col.items-center.gap-y-2
 
-            label(for="first-name") First Name 
-            input#first-name(type="text" name="first_name" required="true" value=(seller===undefined ? '' : seller.first_name)).outline-none.text-black.text-center.px-10.py-1 
+                label(for="first-name") First Name 
+                input#first-name(type="text" name="first_name" required="true" value=(seller===undefined ? '' : seller.first_name)).outline-none.text-black.text-center.px-10.py-1 
 
-            label(for="last-name") Last Name 
-            input#last-name(type="text" name="last_name" required="true" value=(seller===undefined ? '' : seller.last_name)).outline-none.text-black.text-center.px-10.py-1 
+                label(for="last-name") Last Name 
+                input#last-name(type="text" name="last_name" required="true" value=(seller===undefined ? '' : seller.last_name)).outline-none.text-black.text-center.px-10.py-1 
 
-            input(type="submit" value="Apply" class=" bg-green-700 p-2 font-semibold")
+                input(type="submit" value="Apply" class=" bg-green-700 p-2 font-semibold")
 
-            if(errors)
-                ul 
-                    each error in errors 
-                        li= error.msg 
+                if(errors)
+                    ul 
+                        each error in errors 
+                            li= error.msg 
+        else
+            h1.text-center.text-2xl= title 
+            p Please log in first to become a seller
+
                 
         p.m-4.text-yellow-500.font-bold FakeStore

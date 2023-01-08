@@ -1,5 +1,7 @@
 const Seller = require('../models/seller');
 const Item = require('../models/item');
+const User = require('../models/user');
+
 const { validationResult, body } = require('express-validator');
 const async = require('async');
 
@@ -53,7 +55,8 @@ exports.seller_create_post = [
         const seller = new Seller({
             first_name: req.body.first_name,
             last_name: req.body.last_name,
-            joined_date: new Date()
+            joined_date: new Date(),
+            user: req.user
         });
 
         if(!errors.isEmpty()) {
@@ -64,9 +67,10 @@ exports.seller_create_post = [
         //Save new seller to database
         seller.save((err) => {
            if(err) return next(err);
-           
+           User.findByIdAndUpdate(req.user.id, {$set: {isSeller: true}}, function(err) {
+            if(err) return next(err);
+           });
            res.redirect(seller.url);
         });
-
     }
 ];
