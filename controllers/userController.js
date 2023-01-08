@@ -41,3 +41,11 @@ exports.log_in_post =
         successRedirect: '/',
         failureRedirect: '/'
     });
+
+exports.log_out_get = (req, res, next) => {
+    req.logout(function(err) {
+        if(err) return next(err);
+
+        res.redirect('/');
+    })
+}
